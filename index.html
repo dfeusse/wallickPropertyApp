@@ -49,22 +49,32 @@
 			                    <div>
 			                        <input type="text" class="form-control" ng-model="filterTerm" placeholder="Will update in real time">
 			                    </div>
-			                    <div>
-				                    Sort by:
-									<select ng-model="orderProp">
-									  	<option value="name">Alphabetical</option>
-									  	<option value="founded">Newest</option>
-									</select>
-								</div>
 			                </div>
 						</div>
 						<div class="col-md-9">
 							Properties
+							<!--
 							<ul>
 								<li ng-repeat="property in properties | filter:filterTerm | orderBy:orderProp:true">
 									{{ property.name }}
 								</li>
 							</ul>
+							<hr>
+						-->
+
+    <table ng-table="tableParams" class="table">
+        <tr ng-repeat="property in $data | filter:filterTerm">
+            <td data-title="'Img'" sortable="image.uri">
+                <img class="tableImg" ng-src="http://developer.tmsimg.com/{{user.image.uri}}?api_key=gs5ts7y8cyhjthv3ajeyyevd&amp;h=200"/>
+            </td>
+            <td data-title="'Name'" sortable="name">
+                {{property.name}}
+            </td>
+            <td data-title="'Address'" sortable="address">
+                {{property.address}}
+            </td>
+        </tr>
+    </table>
 						</div>
 					</div>
 				</div>
